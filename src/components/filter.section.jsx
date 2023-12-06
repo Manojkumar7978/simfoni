@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, IconButton, Input, InputGroup, InputLeftAddon, InputRightElement, Menu, MenuButton, MenuItem, MenuList, StatDownArrow, chakra, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, IconButton, Input, InputGroup, InputLeftAddon, InputRightElement, Menu, MenuButton, MenuItem, MenuList, StatDownArrow, chakra, useDisclosure } from '@chakra-ui/react'
 import { Box } from '@chakra-ui/react'
 import { IoSearch } from "react-icons/io5";
 import { menuBtns } from '../assests/data';
@@ -17,35 +17,71 @@ export default function Filtersection() {
     <React.Fragment >
       <chakra.div display={'grid'} gap={5} p={5} bg={'#eef3f6ce'}>
         {/* 1st line elements */}
-        <Box display={'flex'} gap={5} >
-          <Button size={'sm'} rightIcon={<StatDownArrow w={3}
-            color={'black'}
-          />} variant={'outline'}
+        <Box display={'flex'}
+        justifyContent={'space-between'}
+        rowGap={5}
+        flexWrap={'wrap'}
+        w={['100%','100%','70%']}
+        >
+          <Box 
+           position={'relative'}
+           p={1}
+           pl={5}
+           variant={'outline'}
             _hover={{}}
             bg={'white'}
             _active={{}}
-          //  boxShadow={'md'}
-          >Purchase organisation</Button>
-          <Button size={'sm'} rightIcon={<StatDownArrow ml={100} w={3}
+            w={['100%','100%','33%']}
+            fontWeight={'500'}
+            borderRadius={5}
+          >Purchase organisation
+          <StatDownArrow w={3}
             color={'black'}
-          />} variant={'outline'}
+            className='rightIcon'
+            right={2}
+          />
+          </Box>
+          <Box 
+           position={'relative'}
+           p={1}
+           pl={5}
+           variant={'outline'}
             _hover={{}}
             bg={'white'}
             _active={{}}
-          //  boxShadow={'md'}
-          >Company</Button>
-          <Button size={'sm'} rightIcon={<StatDownArrow ml={100} w={3}
+            w={['45%','45%','33%']}
+            fontWeight={'500'}
+            borderRadius={5}
+          >Company
+          <StatDownArrow w={3}
             color={'black'}
-          />} variant={'outline'}
+            className='rightIcon'
+            right={2}
+          />
+          </Box>
+          <Box 
+           position={'relative'}
+           p={1}
+           pl={5}
+           variant={'outline'}
             _hover={{}}
             bg={'white'}
             _active={{}}
-          //  boxShadow={'md'}
-          >Plant</Button>
+            w={['45%','45%','33%']}
+            fontWeight={'500'}
+            borderRadius={5}
+          >Plant
+          <StatDownArrow w={3}
+            color={'black'}
+            className='rightIcon'
+            right={2}
+          />
+          </Box>
 
         </Box>
-        {/* 2nd line elements search input and filter and sort */}
-        <Box display={'flex'} alignItems={'center'}
+      <Flex flexDirection={['column-reverse','column','column']} gap={5}>
+          {/* 2nd line elements search input and filter and sort */}
+          <Box display={'flex'} alignItems={'center'}
           gap={5}>
           <InputGroup maxW={'600px'}>
             <Input size={'sm'} bg={'white'} placeholder='Search' />
@@ -62,7 +98,7 @@ export default function Filtersection() {
               </IconButton>
             </InputRightElement >
           </InputGroup>
-          <Box display={'flex'} alignItems={'center'} gap={5}>
+          <Box  display={['none','none','flex']} alignItems={'center'} gap={5}>
             <Button
               size={'sm'}
               variant={'outline'} border={'3px solid #319795'}>Upload</Button>
@@ -87,16 +123,23 @@ export default function Filtersection() {
           </Box>
         </Box>
         {/* 3rd line elements all menus */}
-        <Box bg={'white'} borderRadius={5}>
+        <Box bg={'white'} borderRadius={5} pr={[2,'auto','auto']}>
           {
             menuBtns.map((el, ind) => {
-              return <Menu >
+              return <Menu key={el}>
                 <MenuButton  bg={'white'}
                 _hover={{}}
                 _active={{borderBottom:'3px solid #188af4',color:'#188af4'}}
                 borderRadius={'0'}
-                as={Button} rightIcon={<FiChevronDown />}>
+                as={Button}
+                display={ind!==0 && ['none','inline','inline']}
+                w={['full','auto','auto']}
+                textAlign={'left'}
+                >
                   {el}
+                  <FiChevronDown
+                    className='rightIcon'
+                  />
                 </MenuButton>
                 {
                   ind===0 && 
@@ -150,6 +193,7 @@ export default function Filtersection() {
           }
 
         </Box>
+      </Flex>
       </chakra.div>
 
     </React.Fragment>

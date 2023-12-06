@@ -30,11 +30,16 @@ export default function Nav() {
     return (
 <chakra.header p={5} boxShadow={'xs'}>
 <React.Fragment>
-            <Flex justifyContent={'space-between'} alignItems={'center'} mx={'auto'}>
+            <Flex justifyContent={'space-between'}
+             alignItems={'center'}
+             gap={3}
+             mx={'auto'}>
                 {/* left part  */}
                 <HStack >
                     <RxHamburgerMenu size={25} />
-                    <Box >
+                    <Box 
+                    display={['none','none','inline']}
+                    >
                         <Button bg={'white'} value={1} 
                         onClick={()=>{ActiveButton(1)}}
                         color={active===1 && '#00a69e'}
@@ -58,12 +63,13 @@ export default function Nav() {
                 <HStack
                     display={'flex'}
                     alignItems={'center'}
-                    gap={5}
+                    gap={3}
                 >
                     <Box
-                        display={'flex'}
+                        // display={'flex'}
                         alignItems={'center'}
                         gap={3}
+                        display={['none','none','flex']}
                     >
                         <InputGroup>
                             <InputLeftAddon children='PO' />
@@ -81,9 +87,9 @@ export default function Nav() {
                     <Box
                         display={'flex'}
                         alignItems={'center'}
-                        gap={10}
+                        gap={3}
                     >
-                        <HStack gap={5}>
+                        <HStack gap={3}>
                             <LuWallet2 size={25} />
                             <FaRegHeart size={25} />
                             <IoCartOutline size={25} />
@@ -94,7 +100,9 @@ export default function Nav() {
                         _hover={{}}
                         _active={{}}
                         leftIcon={<Avatar size={'sm'} name='Sara Green' />
-                        } rightIcon={<StatDownArrow w={3} color={'black'}/>}>Sara Green</Button>                    </Box>
+                        } rightIcon={<StatDownArrow w={3} color={'black'}/>}
+                        
+                        ><chakra.span display={['none','none','inline']}>Sara Green</chakra.span></Button>                    </Box>
 
                 </HStack>
             </Flex>
