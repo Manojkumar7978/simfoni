@@ -1,7 +1,7 @@
 let initialState={
     products:[],
     searchhistory:[],
-
+    categories:[]
 }
 
 const reducer=(state=initialState,action)=>{
