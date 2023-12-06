@@ -1,34 +1,36 @@
 import { Box, Heading, Image, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import image from '../assests/image.avif'
-import { useSelector } from 'react-redux'
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux'
+import BestSelling from '../components/selling';
+import Suppliers from '../components/suppliers';
+import { fetchCategoriesData } from '../assests/data';
+import MostSearching from '../components/MostSearching';
+
 
 export default function Home() {
   let categories=useSelector((e)=>e.categories)
+  const dispatch=useDispatch()
 
-  useEffect(async ()=>{
-
-    const url = 'https://wayfair.p.rapidapi.com/categories/list?caid=214970';
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'a92123b46dmshf1d366063e87eccp1764cfjsncb564a0cc294',
-        'X-RapidAPI-Host': 'wayfair.p.rapidapi.com'
-      }
-    };
-    
-    try {
-      const response = await fetch(url, options);
-      const result = await response.text();
-      console.log(result);
-    } catch (error) {
-      console.error(error);
+  useEffect(()=>{
+    if(categories.length===0){
+      fetchCategoriesData()
+    .then((res)=>{
+      dispatch({
+        type:'CATEGORIES DATA',
+        payload:res
+      })
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
     }
-  },[])
+
+   
+  },[categories.length,dispatch])
 
   return (
-    <Box>
+    <Box bg={'#eef3f6ce'}>
       {/* header image  */}
       <Box position={'relative'}>
         <Image w={'100%'} src={image} />
@@ -47,6 +49,11 @@ export default function Home() {
           >Select the best product from out store!</Text>
         </Box>
       </Box>
+    
+     <BestSelling />
+     <Suppliers/>
+     <MostSearching />
+
     </Box>
   )
 }
