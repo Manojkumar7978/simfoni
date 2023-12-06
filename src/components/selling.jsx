@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 export default function BestSelling() {
     let data=useSelector((e)=>e.categories)
-    console.log(data)
   return (
   <chakra.div
   p={10}

@@ -75,3 +75,25 @@ export const mostSearching=[
   'Kinoa',
   'Banana'
 ]
+
+export const getProduct=async ()=>{
+
+const options = {
+  method: 'GET',
+  url: 'https://wayfair.p.rapidapi.com/products/list',
+  params: {
+    categoryId: '45974',
+  },
+  headers: {
+    'X-RapidAPI-Key': 'a92123b46dmshf1d366063e87eccp1764cfjsncb564a0cc294',
+    'X-RapidAPI-Host': 'wayfair.p.rapidapi.com'
+  }
+};
+
+try {
+	const response = await axios.request(options);
+	return response.data.response.data.category.browse.products
+} catch (error) {
+	console.error(error);
+}
+}

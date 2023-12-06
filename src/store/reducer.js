@@ -11,6 +11,12 @@ const reducer=(state=initialState,action)=>{
             categories:action.payload
         }
     }
+    if(action.type==='ALL PRODUCT'){
+        return {
+            ...state,
+            products:action.payload
+        }
+    }
     return state;
 }
 

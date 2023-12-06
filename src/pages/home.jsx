@@ -4,12 +4,14 @@ import image from '../assests/image.avif'
 import { useDispatch, useSelector } from 'react-redux'
 import BestSelling from '../components/selling';
 import Suppliers from '../components/suppliers';
-import { fetchCategoriesData } from '../assests/data';
+import { fetchCategoriesData, getProduct } from '../assests/data';
 import MostSearching from '../components/MostSearching';
+import Carusal from '../components/carusal';
 
 
 export default function Home() {
   let categories=useSelector((e)=>e.categories)
+  let allProduct=useSelector((e)=>e.products)
   const dispatch=useDispatch()
 
   useEffect(()=>{
@@ -26,9 +28,18 @@ export default function Home() {
     })
     }
 
+    if(allProduct.length===0){
+      getProduct()
+      .then((res)=>{
+        dispatch({
+          type:'ALL PRODUCT',
+          payload:res 
+        })
+      })
+    }
+
    
   },[categories.length,dispatch])
-
   return (
     <Box bg={'#eef3f6ce'}>
       {/* header image  */}
@@ -51,6 +62,7 @@ export default function Home() {
       </Box>
     
      <BestSelling />
+     <Carusal />
      <Suppliers/>
      <MostSearching />
 
