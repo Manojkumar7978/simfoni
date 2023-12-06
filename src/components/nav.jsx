@@ -11,15 +11,21 @@ import { Avatar, Box,
       StatDownArrow,
       chakra
      } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosSearch, IoMdNotificationsOutline } from "react-icons/io";
 import { LuWallet2 } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
+import { color } from 'framer-motion';
 
 
 export default function Nav() {
+    let[active,setActive]=useState(1)
+
+    const ActiveButton=(value)=>{
+     setActive(value)
+    }
 
     return (
 <chakra.header p={5} boxShadow={'xs'}>
@@ -29,12 +35,22 @@ export default function Nav() {
                 <HStack >
                     <RxHamburgerMenu size={25} />
                     <Box >
-                        <Button bg={'white'} fontWeight={'700'} _hover={{ bg: 'white' }}>Catalog</Button>
-                        <Button bg={'white'} fontWeight={'700'} _hover={{ bg: 'white' }}>BuyDesk</Button>
-                        <Button bg={'white'} fontWeight={'700'} _hover={{ bg: 'white' }} 
-                        
+                        <Button bg={'white'} value={1} 
+                        onClick={()=>{ActiveButton(1)}}
+                        color={active===1 && '#00a69e'}
+                        fontWeight={'700'} _hover={{ bg: 'white' }}>Catalog</Button>
+                        <Button bg={'white'}
+                        onClick={()=>{ActiveButton(2)}}
+                        color={active===2 && '#00a69e'}
+                        value={2} fontWeight={'700'} _hover={{ bg: 'white' }}>BuyDesk</Button>
+                        <Button bg={'white'} value={3} fontWeight={'700'} _hover={{ bg: 'white' }} 
+                        onClick={()=>{ActiveButton(3)}}
+                        color={active===3 && '#00a69e'}
                         rightIcon={<StatDownArrow w={3} color={'black'} />}>History</Button>
-                        <Button bg={'white'} fontWeight={'700'} _hover={{ bg: 'white' }}>Dashboard</Button>
+                        <Button bg={'white'} 
+                        onClick={()=>{ActiveButton(4)}}
+                        color={active===4 && '#00a69e'}
+                        value={4} fontWeight={'700'} _hover={{ bg: 'white' }}>Dashboard</Button>
                     </Box>
 
                 </HStack>
