@@ -1,6 +1,7 @@
 import { Box, Heading, Image, Text,chakra } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Loder from './loder'
 
 
 export default function BestSelling() {
@@ -21,7 +22,13 @@ export default function BestSelling() {
   flexWrap={'wrap'}
   gap={2}
   >
-        {
+       {
+        data.length===0 ? <>
+        <Loder/>
+        </> 
+        :
+        <>
+         {
             data.slice(0,5).map((el,ind)=>{
                 return <Box key={el.categoryId}
                 w={'200px'}
@@ -37,6 +44,8 @@ export default function BestSelling() {
                 </Box>
             })
         }
+        </>
+       }
   </Box>
     </Box>
   </chakra.div>

@@ -7,6 +7,7 @@ import Suppliers from '../components/suppliers';
 import { fetchCategoriesData, getProduct } from '../assests/data';
 import MostSearching from '../components/MostSearching';
 import Carusal from '../components/carusal';
+import AllItems from '../components/AllItems';
 
 
 export default function Home() {
@@ -62,9 +63,15 @@ export default function Home() {
       </Box>
     
      <BestSelling />
-     <Carusal />
+     <Carusal heading={'BEST SELLING ITMES'} footerText={true}/>
+     <AllItems/>
+
+     <Carusal heading={'NEW ARRIVALS'} footerText={false}/>
      <Suppliers/>
+
+     <Box m={10}>
      <MostSearching />
+     </Box>
 
     </Box>
   )

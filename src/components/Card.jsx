@@ -1,16 +1,27 @@
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Grid, GridItem, Heading, Image, Stack, Text ,chakra} from "@chakra-ui/react";
-import React from "react";
+import React, { lazy } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-function CardElement({el}) {
-console.log(el)
+function CardElement({el,footerText}) {
+
+const navigate=useNavigate()
+
   return (
-    <Card maxW='200px' 
+    <Card w='200px' 
     border={'1px solid gray'}
     h={'auto'}
+    _loading={'lazy'}
+    onClick={()=>{
+      localStorage.setItem("item",JSON.stringify(el))
+      navigate('/details')
+      
+    }}
+    cursor={'pointer'}
     >
     <CardBody p={2} >
       <Image
+      loading="lazy"
         src={`https://assets.wfcdn.com/im/63330616/resize-h800-w800%5Ecompr-r85/7186/${el.leadImage.id    }/Wayfair+Basics%C2%AE+Hinged+Furniture+Anti-Tip+Strap.jpg`}
         alt={el.name}
         borderRadius={5}
@@ -31,7 +42,7 @@ console.log(el)
       </Stack>
     </CardBody>
     <CardFooter display={'grid'} p={2} pt={0} >
-        <Stack gap={0} fontWeight={'bold'} fontSize={'small'}>
+        <Stack display={footerText ? 'inline' :'none'} gap={0} fontWeight={'bold'} fontSize={'small'}>
             <Text color={'#4bafad'}>Saving % 4.60</Text>
             <Text>Supplier: <chakra.span color={'gray'}>Supplier</chakra.span></Text>
             <Text>Delivery by: <chakra.span color={'gray'}>24-Jan-2022</chakra.span></Text>

@@ -2,6 +2,7 @@ let initialState={
     products:[],
     searchhistory:[],
     categories:[],
+    keyword:"ALL ITEMS"
 }
 
 const reducer=(state=initialState,action)=>{
@@ -15,6 +16,12 @@ const reducer=(state=initialState,action)=>{
         return {
             ...state,
             products:action.payload
+        }
+    }
+    if(action.type==='keyword'){
+        return {
+            ...state,
+            keyword:action.payload
         }
     }
     return state;

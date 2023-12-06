@@ -7,7 +7,7 @@ const data=mostSearching
   return (
   <chakra.div
   p={10}
- m={10}
+ mt={10}
   bg={'white'}
   borderRadius={10}
   >

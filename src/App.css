@@ -13,3 +13,6 @@
     transform: translateY(-50%);
 
 }
+.scroll::-webkit-scrollbar{
+    display: none;
+}
