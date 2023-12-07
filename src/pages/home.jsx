@@ -4,7 +4,7 @@ import image from '../assests/image.avif'
 import { useDispatch, useSelector } from 'react-redux'
 import BestSelling from '../components/selling';
 import Suppliers from '../components/suppliers';
-import { fetchCategoriesData, getProduct } from '../assests/data';
+import { fetchCategoriesData, getProduct, searchProduct } from '../assests/data';
 import MostSearching from '../components/MostSearching';
 import Carusal from '../components/carusal';
 import AllItems from '../components/AllItems';
@@ -14,6 +14,7 @@ export default function Home() {
   let categories=useSelector((e)=>e.categories)
   let allProduct=useSelector((e)=>e.products)
   const dispatch=useDispatch()
+  window.scrollTo({top: 0,behavior: 'smooth'})
 
   useEffect(()=>{
     if(categories.length===0){
@@ -30,7 +31,7 @@ export default function Home() {
     }
 
     if(allProduct.length===0){
-      getProduct()
+      searchProduct('ALL ITEMS')
       .then((res)=>{
         dispatch({
           type:'ALL PRODUCT',
@@ -38,9 +39,11 @@ export default function Home() {
         })
       })
     }
-
+return ()=>{
+  return
+}
    
-  },[categories.length,dispatch])
+  },[])
   return (
     <Box bg={'#eef3f6ce'}>
       {/* header image  */}

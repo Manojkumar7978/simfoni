@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Button, Flex, IconButton, Input, InputGroup,
   InputRightElement, Menu, MenuButton, MenuItem, MenuList,
@@ -9,13 +9,26 @@ import { IoSearch } from "react-icons/io5";
 import { menuBtns } from '../assests/data';
 import { FiChevronDown } from "react-icons/fi";
 import { GoChevronRight } from "react-icons/go";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Filtersection() {
   const { isOpen, onOpen, onClose } = useDisclosure()
+let[query,setquery]=useState("ALL ITEMS")
+// const dispatch=useDispatch()
+const navigate=useNavigate()
 
+const setQueryParam = (paramName, paramValue) => {
+  const searchParams = new URLSearchParams(window.location.search);
+  searchParams.set(paramName, paramValue);
 
+  const newParams = searchParams.toString();
+  const newUrl = `${window.location.pathname}?${newParams}`;
 
+  // window.history.replaceState(null, '', newUrl);
+  navigate(newUrl)
+};
 
   return (
     <React.Fragment >
@@ -88,9 +101,16 @@ export default function Filtersection() {
           <Box display={'flex'} alignItems={'center'}
             gap={5}>
             <InputGroup maxW={'600px'}>
-              <Input size={'sm'} bg={'white'} placeholder='Search' />
+              <Input 
+              onChange={(e)=>{
+                setquery(e.target.value)
+              }}
+              size={'sm'} bg={'white'} placeholder={query} />
               <InputRightElement w={100} >
                 <IconButton
+                onClick={()=>{
+                  navigate(`/all/${query}`)
+                }}
                   size={'sm'}
                   mt={-2}
                   _active={{}}
@@ -115,7 +135,9 @@ export default function Filtersection() {
                 size={'sm'}
               //  boxShadow={'md'}
               >Company</Button>
-              <Button rightIcon={<StatDownArrow ml={100} w={3}
+              <Menu>
+                <MenuButton>
+                <Button rightIcon={<StatDownArrow ml={100} w={3}
                 color={'black'}
               />} variant={'outline'}
                 _hover={{}}
@@ -123,7 +145,22 @@ export default function Filtersection() {
                 _active={{}}
                 //  boxShadow={'md'}
                 size={'sm'}
-              >Sort by</Button>
+              >Sort by
+              
+              </Button>
+                </MenuButton>
+                <MenuList
+                defaultValue={null}
+                onClick={(e)=>{
+                  setQueryParam('filter', e.target.value);
+                }}
+                >
+                  <MenuItem   value={1}>Title: From A to Z</MenuItem>
+                  <MenuItem value={2}>Title: From Z to A</MenuItem>
+                  <MenuItem value={3}>Price: High to Low</MenuItem>
+                  <MenuItem value={4}>Price: Low to High</MenuItem>
+                </MenuList>
+              </Menu>
             </Box>
           </Box>
           {/* 3rd line elements all menus */}

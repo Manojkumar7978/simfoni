@@ -19,7 +19,7 @@ export default function AllItems() {
 <Heading  size={'md'}>ALL ITEMS</Heading>
 <Heading color={'#4bafad'} cursor={'pointer'} size={'sm'}
 onClick={()=>{
-    navigate('/all')
+    navigate('/all/ALL ITEMS')
 }}
 >See More{'>'}</Heading>
 </Box>

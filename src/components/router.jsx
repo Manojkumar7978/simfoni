@@ -9,7 +9,7 @@ export default function Router() {
     <div>
         <Routes>
             <Route path='/' element={<Home />}  />
-            <Route path='/all' element={<Allproducts />}  />
+            <Route path='/all/:id' element={<Allproducts />}  />
             <Route path='/details' element={<Details />}  />
 
         </Routes>

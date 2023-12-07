@@ -21,8 +21,11 @@ const navigate=useNavigate()
     >
     <CardBody p={2} >
       <Image
+      minH={'200px'}
+      maxH={'200px'}
+      w={'100%'}
       loading="lazy"
-        src={`https://assets.wfcdn.com/im/63330616/resize-h800-w800%5Ecompr-r85/7186/${el.leadImage.id    }/Wayfair+Basics%C2%AE+Hinged+Furniture+Anti-Tip+Strap.jpg`}
+        src={`https://assets.wfcdn.com/im/63330616/resize-h800-w800%5Ecompr-r85/7186/${el.image_url}/Wayfair+Basics%C2%AE+Hinged+Furniture+Anti-Tip+Strap.jpg`}
         alt={el.name}
         borderRadius={5}
       />
@@ -30,9 +33,9 @@ const navigate=useNavigate()
         <Heading size='xs' noOfLines={3}
         h={'50px'}
         >{el.name}</Heading>
-         <Text color={"gray"}>{el.leadImage.id} </Text>
+         <Text color={"gray"}>{el.sku} </Text>
        <Text color='black.700' fontSize='2xl'>
-          ${el.pricing.customerPrice.unitPrice.value}
+          ${el.sale_price}
           <chakra.span color={'gray'}
           fontWeight={'bold'}
           fontSize={'sm'}>

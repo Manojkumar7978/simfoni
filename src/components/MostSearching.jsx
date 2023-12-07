@@ -1,9 +1,11 @@
 import { Box, Button,  Heading, chakra } from '@chakra-ui/react'
 import React from 'react'
 import { mostSearching } from '../assests/data'
+import { useNavigate } from 'react-router-dom'
 
 export default function MostSearching() {
 const data=mostSearching
+const navigate=useNavigate()
   return (
   <chakra.div
   p={10}
@@ -22,7 +24,11 @@ const data=mostSearching
         {
             data.map((el,ind)=>{
                 return <Box key={el}>
-                    <Button color={'gray'}>{el}</Button>
+                    <Button color={'gray'} 
+                    onClick={()=>{
+                      navigate(`/all/${el}`)
+                    }}
+                    >{el}</Button>
                 </Box>
             })
         }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const menuBtns=[
     'All Categories',
@@ -76,13 +77,16 @@ export const mostSearching=[
   'Banana'
 ]
 
-export const getProduct=async ()=>{
 
+export const searchProduct=async (q)=>{
 const options = {
   method: 'GET',
-  url: 'https://wayfair.p.rapidapi.com/products/list',
+  url: 'https://wayfair.p.rapidapi.com/products/search',
   params: {
-    categoryId: '45974',
+    keyword: q,
+    sortby: '0',
+    curpage: '1',
+    itemsperpage: '48'
   },
   headers: {
     'X-RapidAPI-Key': 'a92123b46dmshf1d366063e87eccp1764cfjsncb564a0cc294',
@@ -92,8 +96,12 @@ const options = {
 
 try {
 	const response = await axios.request(options);
-	return response.data.response.data.category.browse.products
+  if(response.data.response.product_collection){
+	return response.data.response.product_collection
+  }else{
+   return response.data.response.superbrowse_object.product_collection
+  }
 } catch (error) {
-	console.error(error);
+	return error
 }
 }
