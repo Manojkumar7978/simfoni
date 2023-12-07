@@ -9,7 +9,7 @@ export default function BestSelling() {
   return (
   <chakra.div
   p={10}
- m={10}
+ m={[0,5,10]}
   bg={'white'}
   borderRadius={10}
   >
@@ -31,7 +31,7 @@ export default function BestSelling() {
          {
             data.slice(0,5).map((el,ind)=>{
                 return <Box key={el.categoryId}
-                w={'200px'}
+                w={['150px','200px','200px']}
                 p={5}
                 minH={'250px'}
                 borderRadius={5}

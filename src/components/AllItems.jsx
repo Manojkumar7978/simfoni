@@ -11,7 +11,7 @@ export default function AllItems() {
   return (
     <Box
     p={10}
-    m={10}
+    m={[0,5,10]}
      bg={'white'}
      borderRadius={10}
     >

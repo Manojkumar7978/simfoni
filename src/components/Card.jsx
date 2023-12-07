@@ -8,7 +8,7 @@ function CardElement({el,footerText}) {
 const navigate=useNavigate()
 
   return (
-    <Card w='200px' 
+    <Card w={'200px'}
     border={'1px solid gray'}
     h={'auto'}
     _loading={'lazy'}
@@ -51,12 +51,12 @@ const navigate=useNavigate()
             <Text>Delivery by: <chakra.span color={'gray'}>24-Jan-2022</chakra.span></Text>
         </Stack>
     <Box mt={2} mb={2} display={'flex'} gap={1}>
-        <Button size={'sm'} w={'70%'}  variant={'outline'} leftIcon={'-'} rightIcon={'+'}>1</Button>
-        <Button w={'30%'}  size='sm' color={'#4bafad'}
+        <Button s w={'70%'}  variant={'outline'} leftIcon={'-'} rightIcon={'+'}>1</Button>
+        <Button w={'30%'}  color={'#4bafad'}
         colorScheme="#4bafad"
         variant={'outline'}><FaRegHeart size={20} /></Button>
     </Box>
-    <Button size={'sm'} bg="#4bafad" 
+    <Button bg="#4bafad" 
     _hover={{}}
     _active={{}}
     color={'white'}>Add to Cart</Button>

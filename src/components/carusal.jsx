@@ -20,7 +20,7 @@ function Carusal({ heading, footerText }) {
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
         numberOfCards={5}
-        gutter={90}
+        gutter={10}
 
         leftChevron={
           <Button boxShadow={'md'} bg={'white'} h={20} w={3} variant={'outline'}>{'<'}</Button>
